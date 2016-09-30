@@ -35,6 +35,7 @@ public class FishTank extends JFrame implements ActionListener{
         w1.setBounds(w1.wx, w1.wy, w1.ww, w1.wh);
         w1.setVisible(true);
         w1.requestFocus();
+        
     }
     
     public static void main(String[] args) {
@@ -60,13 +61,13 @@ public class FishTank extends JFrame implements ActionListener{
             
         
         public AboutWindow(){
-            ww = 480;
+            ww = 400;
             wh = 128;
             wx = (int)(res.getWidth()/2 - ww/2);
-            wy = (int)(res.getHeight()/2 - wh/2);
+            wy = (int)(/*res.getHeight()/2 - wh/2*/ 64);
              iLabel[0] = new JLabel("This program generates its own unique data for each");
              iLabel[1] = new JLabel("species of fish, since no real data or peripheral is");
-             iLabel[2] = new JLabel("is attached. Let me know where improvement can be made!");
+             iLabel[2] = new JLabel("attached. Let me know where improvement can be made!");
             JPanel northPanel = new JPanel();
             JPanel southPanel = new JPanel();
             northPanel.setLayout(new GridLayout(3,1));
@@ -78,6 +79,8 @@ public class FishTank extends JFrame implements ActionListener{
             this.add(southPanel, BorderLayout.SOUTH);
                 southPanel.add(closeButton);
                 closeButton.addActionListener(this);
+                
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 
             
         }
