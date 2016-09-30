@@ -18,16 +18,30 @@ public class FishTank extends JFrame implements ActionListener{
     
     
     Image[] speciesImage;
+    static int wx, wy, ww, wh;
     
 
     public FishTank(){
+        Dimension res = Toolkit.getDefaultToolkit().getScreenSize();
+        ww = 800;
+        wh = 600;
+        wx = (int)(res.getWidth()/2 - ww/2);
+        wy = (int)(res.getHeight()/2 - wh/2);
+        setBounds(wx, wy, ww, wh);
+        setTitle("Fishtank A - Room 428C, Old Main");
+        setVisible(true);
+        
         AboutWindow w1 = new AboutWindow();
         w1.setBounds(w1.wx, w1.wy, w1.ww, w1.wh);
         w1.setVisible(true);
+        w1.requestFocus();
     }
     
     public static void main(String[] args) {
-        
+        FishTank f1 = new FishTank();
+        f1.setBounds(wx, wy, ww, wh);
+        f1.setTitle("Fishtank A - Room 428C, Old Main");
+        f1.setVisible(true);
     }
     
     public void actionPerformed(ActionEvent e){
@@ -46,8 +60,8 @@ public class FishTank extends JFrame implements ActionListener{
             
         
         public AboutWindow(){
-            ww = 1280;
-            wh = 320;
+            ww = 480;
+            wh = 128;
             wx = (int)(res.getWidth()/2 - ww/2);
             wy = (int)(res.getHeight()/2 - wh/2);
              iLabel[0] = new JLabel("This program generates its own unique data for each");
@@ -56,9 +70,10 @@ public class FishTank extends JFrame implements ActionListener{
             JPanel northPanel = new JPanel();
             JPanel southPanel = new JPanel();
             northPanel.setLayout(new GridLayout(3,1));
+            
             this.add(northPanel);
                 for(int i=0; i<3; i++){
-                    northPanel.add(iLabel[i]);
+                    northPanel.add(iLabel[i], BorderLayout.CENTER);
                 }
             this.add(southPanel, BorderLayout.SOUTH);
                 southPanel.add(closeButton);
@@ -67,7 +82,7 @@ public class FishTank extends JFrame implements ActionListener{
             
         }
         
-        public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent event) {
             this.dispose();
         }
     
