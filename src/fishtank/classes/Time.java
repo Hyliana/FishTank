@@ -3,13 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishtank.fish;
+package fishtank.classes;
 
-public abstract class Fish {
-    String scientificName;
-    String commonName;
+public class Time {
     
-    public Fish(String species, String scientific){
-        
-    }
 }

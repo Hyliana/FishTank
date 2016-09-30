@@ -5,11 +5,6 @@
  */
 package fishtank.fish;
 
-public abstract class Fish {
-    String scientificName;
-    String commonName;
+public class Species {
     
-    public Fish(String species, String scientific){
-        
-    }
 }

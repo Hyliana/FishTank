@@ -16,7 +16,7 @@ import javax.swing.*;
 public class FishTank extends JFrame implements ActionListener{
     
     
-    
+    int typesOfFish = 6;
     Image[] speciesImage;
     static int wx, wy, ww, wh;
     
@@ -35,6 +35,11 @@ public class FishTank extends JFrame implements ActionListener{
         w1.setBounds(w1.wx, w1.wy, w1.ww, w1.wh);
         w1.setVisible(true);
         w1.requestFocus();
+        
+        for(int i=0; i<typesOfFish; i++) //Load fish images into program
+        {
+            speciesImage[i] = Toolkit.getDefaultToolkit().getImage("..res/fish"+i+".png");
+        }
         
     }
     
@@ -89,6 +94,10 @@ public class FishTank extends JFrame implements ActionListener{
             this.dispose();
         }
     
+        public void paint(Graphics g){
+            g.drawImage(speciesImage, wx, wy, WIDTH, HEIGHT, Color.yellow, rootPane)
+        }
+        
     }
     
 }
