@@ -5,6 +5,26 @@
  */
 package fishtank.fish;
 
-public class Species {
+import fishtank.classes.Time;
+import java.awt.Image;
+import java.util.ArrayList;
+
+public abstract class Species {
+    String scientificName;
+    String commonName;
+    int instances = 0;
+    double avgDailyFeedCount;
+    Image myImage;
     
+    public Species(Image image, String common, String scientific, int inTank, double dailyAvgFeedCount){
+        commonName = common;
+        scientificName = scientific;
+        instances = inTank;
+        avgDailyFeedCount = dailyAvgFeedCount;
+        myImage = image;
+    }
+    
+    public Image getImage(){
+        return myImage;
+    }
 }

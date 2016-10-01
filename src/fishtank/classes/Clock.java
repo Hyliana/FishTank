@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fishtank.fish;
+package fishtank.classes;
 
-public abstract class Fish {
+public class Clock {
     
-    
-    public Fish(){
-        
-    }
 }

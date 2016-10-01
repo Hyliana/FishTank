@@ -93,11 +93,6 @@ public class FishTank extends JFrame implements ActionListener{
         public void actionPerformed(ActionEvent event) {
             this.dispose();
         }
-    
-        public void paint(Graphics g){
-            g.drawImage(speciesImage, wx, wy, WIDTH, HEIGHT, Color.yellow, rootPane)
-        }
-        
     }
     
 }
