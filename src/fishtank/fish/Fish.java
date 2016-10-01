@@ -28,6 +28,10 @@ public class Fish{
             mass = 15*mySpecies.getBurnRate()+massFlux;
     }
     
+    public double pollMass(){
+        return mass;
+    }
+    
     public void tick(){
         int getSec = mySpecies.getClock().getSecond();
         if(curSec < getSec)

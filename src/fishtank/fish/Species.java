@@ -65,6 +65,14 @@ public class Species {
         return 0.0;
     }
     
+    public double pollAverageMass(){
+          double sum = 0;
+        for(int i = 0; i<speciesFish.size(); i++){
+            sum += speciesFish.get(i).pollMass();
+        }
+        return (sum/speciesFish.size());
+    }
+    
     public String getSpeciesCommonName(){
         return commonName;
     }
