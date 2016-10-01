@@ -5,10 +5,21 @@
  */
 package fishtank.fish;
 
-public abstract class Fish {
+public class Fish {
     
     
     public Fish(){
         
+    }
+    
+    /**
+     * This method directly provides the answer to objective 1:
+     * How much was each individual fish fed per day on average?
+     * @return 
+     */
+    public double pollConsumptionWeight()
+    {
+        
+        return 0.0;
     }
 }

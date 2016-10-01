@@ -5,9 +5,12 @@
  */
 package fishtank;
 
+import fishtank.ui.FishPanelButton;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import fishtank.classes.Time;
+import fishtank.fish.Species;
 
 /**
  *
@@ -17,6 +20,7 @@ public class FishTank extends JFrame implements ActionListener{
     
     
     int typesOfFish = 6;
+    Species[] species = new Species[typesOfFish];
     Image[] speciesImage;
     static int wx, wy, ww, wh;
     
@@ -38,8 +42,20 @@ public class FishTank extends JFrame implements ActionListener{
         
         for(int i=0; i<typesOfFish; i++) //Load fish images into program
         {
-            speciesImage[i] = Toolkit.getDefaultToolkit().getImage("..res/fish"+i+".png");
+            speciesImage[i] = Toolkit.getDefaultToolkit().getImage("../res/fish"+i+".png");
         }
+        
+        //Generate Species and their attributes
+        
+        
+        JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            JPanel northClockPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            JPanel northInfoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel mainPanel = new JPanel(new GridLayout(3,2));
+            FishPanelButton[] fishButton = new FishPanelButton[6];
+            for(int i = 0; i<fishButton.length; i++){
+                fishButton[i] = new FishPanelButton(species[i], Time.getFalseTime());
+            }
         
     }
     
