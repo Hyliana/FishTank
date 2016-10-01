@@ -34,6 +34,6 @@ public class FishPanelButton extends JButton{
     
     public void paint(Graphics g)
     {
-        g.drawImage(myImage, this.getX(), this.getY(), 269, 168, Color.DARK_GRAY, this);
+        g.drawImage(myImage, this.getX(), this.getY()+16, 269, 168, Color.DARK_GRAY, this);
     }
 }

@@ -5,11 +5,12 @@
  */
 package fishtank.fish;
 
-public class Fish {
+public class Fish{
+    int mySpeciesIndex;
     
     
-    public Fish(){
-        
+    public Fish(Species mySpecies){
+        mySpeciesIndex = mySpecies.getSpeciesIndex();
     }
     
     /**

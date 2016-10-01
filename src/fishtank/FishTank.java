@@ -21,6 +21,7 @@ public class FishTank extends JFrame implements ActionListener{
     
     int typesOfFish = 6;
     Species[] species = new Species[typesOfFish];
+    int[] speciesCount = new int[typesOfFish];
     Image[] speciesImage;
     static int wx, wy, ww, wh;
     
@@ -40,13 +41,14 @@ public class FishTank extends JFrame implements ActionListener{
         w1.setVisible(true);
         w1.requestFocus();
         
-        for(int i=0; i<typesOfFish; i++) //Load fish images into program
+        for(int i=0; i<typesOfFish; i++) //Load fish images into program, and determine how many fish will be present for each species. (RNG)
         {
             speciesImage[i] = Toolkit.getDefaultToolkit().getImage("../res/fish"+i+".png");
+            speciesCount[i] = (int)(Math.random()*6);
         }
         
-        //Generate Species and their attributes
-        
+        //I love the feeling of initalizing a new species... I'm more or less the God of this FishTank.java.
+        species[0] = new Species(this, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram",0, speciesCount[0], 16);
         
         JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             JPanel northClockPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
