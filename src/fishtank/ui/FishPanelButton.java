@@ -21,11 +21,14 @@ import javax.swing.JPanel;
 public class FishPanelButton extends JButton{
     Image myImage;
     Species species;
+    String[] labels = {"Common Name: ", "Scientific Name: ", "In Tank: "};
     
     
     public FishPanelButton(Species species, Time lastFed){
         this.species = species;
         myImage = species.getImage();
+        
+        
         
         JPanel westPanel = new JPanel();
         JPanel eastPanel = new JPanel(new GridLayout(3,1));

@@ -19,8 +19,18 @@ public class Time {
         this.second = second;
     }
     
+    public Time(Time t){
+        this.hour = t.hour;
+        this.minute = t.minute;
+        this.second = t.second;
+    }
+    
     public String getTimestamp(){
         return f.format(hour)+":"+f.format(minute)+":"+f.format(second);
+    }
+    
+    public Time getTime(){
+        return new Time(hour, second, minute);
     }
     
     public static Time getFalseTime(){

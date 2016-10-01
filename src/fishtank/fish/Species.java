@@ -15,13 +15,15 @@ public class Species {
     FishTank tank;
     String scientificName;
     String commonName;
-    int inTank;
+    public int inTank;
     Image myImage;
     int speciesIndex;
     int metabolismIndex;
     ArrayList<Time> feedTimes = new ArrayList<>();
     ArrayList<Double> speciesWideAverageFeedForDay = new ArrayList<>();
     ArrayList<Fish> speciesFish = new ArrayList<>();
+    Clock clock;
+    double burnRate;
     /**
      * Species is an abstract class meant to provide a 
      * parent class for each of the six species of fish
@@ -38,6 +40,7 @@ public class Species {
      */
     public Species(FishTank tank, Clock clock, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex){
         this.tank = tank;
+        this.clock = clock;
         myImage = image;
         commonName = common;
         scientificName = scientific;
@@ -48,7 +51,7 @@ public class Species {
                 speciesFish.add(new Fish(this));
             }
         this.metabolismIndex = metabolismIndex;
-        
+        this.burnRate=.125*metabolismIndex;
     }
     
     /**
@@ -62,12 +65,32 @@ public class Species {
         return 0.0;
     }
     
+    public FishTank getTank(){
+        return tank;
+    }
+    
+    public int getMetabolismIndex(){
+        return metabolismIndex;
+    }
+    
     public int getSpeciesIndex(){
         return speciesIndex;
     }
     
     public Image getImage(){
         return myImage;
+    }
+    
+    public Clock getClock(){
+        return clock;
+    }
+    
+    public ArrayList<Fish> getAllFish(){
+        return speciesFish;
+    }
+    
+    public double getBurnRate(){
+        return burnRate;
     }
     
     public void commitDataForDay(){

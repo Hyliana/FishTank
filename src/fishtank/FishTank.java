@@ -21,6 +21,7 @@ public class FishTank extends JFrame implements ActionListener{
     
     
     int typesOfFish = 6;
+    FeedStock feed = new FeedStock();
     Species[] species = new Species[typesOfFish];
     int[] speciesCount = new int[typesOfFish];
     Image[] speciesImage;
@@ -79,6 +80,22 @@ public class FishTank extends JFrame implements ActionListener{
         
     }
     
+    public void tick(){
+        for(int i=0; i<species.length; i++){
+            for(int j = 0; j<species[i].inTank; j++)
+            {
+                species[i].getAllFish().get(species[i].inTank).tick();
+            }
+        }
+    }
+    
+    public FeedStock getFeedStock(){
+        return feed;
+    }
+    
+    public Time getTime(){
+        return new Time(simulate24HourClock);
+    }
     
     //INNER CLASS AboutWindow
     class AboutWindow extends JFrame implements ActionListener

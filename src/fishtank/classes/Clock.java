@@ -17,6 +17,10 @@ public class Clock {
        this.controller = controller; 
     }
     
+    public int getSecond(){
+        return seconds;
+    }
+    
     public void tick(){
         if(controller.canTick)
         {
