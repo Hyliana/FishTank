@@ -25,13 +25,21 @@ public class FishPanelButton extends JButton{
     
     
     public FishPanelButton(Species species, Time lastFed){
+        this.setBackground(Color.DARK_GRAY);
         this.species = species;
         myImage = species.getImage();
         
-        
+        JLabel[] infoLabels = {
+            new JLabel(labels[0]+species.getSpeciesCommonName()), 
+            new JLabel(labels[1]+species.getSpeciesScientificName()), 
+            new JLabel(labels[2]+species.getCount())
+        };
         
         JPanel westPanel = new JPanel();
         JPanel eastPanel = new JPanel(new GridLayout(3,1));
+            for(int i=0; i<infoLabels.length; i++){
+                eastPanel.add(infoLabels[i]);
+            }
         
     }
     

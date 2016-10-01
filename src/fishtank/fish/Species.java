@@ -65,6 +65,18 @@ public class Species {
         return 0.0;
     }
     
+    public String getSpeciesCommonName(){
+        return commonName;
+    }
+    
+    public String getSpeciesScientificName(){
+        return scientificName;
+    }
+    
+    public int getCount(){
+        return inTank;
+    }
+    
     public FishTank getTank(){
         return tank;
     }

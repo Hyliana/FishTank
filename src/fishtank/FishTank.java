@@ -65,7 +65,14 @@ public class FishTank extends JFrame implements ActionListener{
             FishPanelButton[] fishButton = new FishPanelButton[6];
             for(int i = 0; i<fishButton.length; i++){
                 fishButton[i] = new FishPanelButton(species[i], Time.getFalseTime());
+                mainPanel.add(fishButton[i]);
             }
+            
+        JPanel rootPanel = new JPanel(new BorderLayout());
+        this.add(rootPanel);
+        rootPanel.add(northPanel, (BorderLayout.NORTH));
+        rootPanel.add(mainPanel, BorderLayout.CENTER);
+        
         
     }
     
@@ -81,6 +88,7 @@ public class FishTank extends JFrame implements ActionListener{
     }
     
     public void tick(){
+        clock.tick();
         for(int i=0; i<species.length; i++){
             for(int j = 0; j<species[i].inTank; j++)
             {
