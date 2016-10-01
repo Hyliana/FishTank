@@ -38,12 +38,20 @@ public class FishPanelButton extends JButton{
             new JLabel(labels[1]+species.getSpeciesScientificName()), 
             new JLabel(labels[2]+species.getCount())
         };
+        
+        
     }
     
     @Override
     public void paintComponent(Graphics g)
     {
-        
-        g.drawImage(myImage, this.getX(), this.getY()+16, 269, 168, Color.DARK_GRAY, this);
+        g.setColor(Color.DARK_GRAY);
+        //g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        g.drawImage(myImage, -32, 0, 269, 168, getRootPane().getContentPane().getBackground(), this);
+        //g.setColor(Color.WHITE);
+        g.drawString(labels[0]+species.getSpeciesCommonName(), 280-92, (2)*(200/5)-(6));
+        g.drawString(labels[1]+species.getSpeciesScientificName(), 280-92, (200/2)-(6));
+        g.drawString(labels[2]+species.getCount(), 280-92, (3)*(200/5)-(6));
+        setOpaque(false);
     }
 }
