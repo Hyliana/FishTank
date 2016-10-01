@@ -29,10 +29,11 @@ public class FishTank extends JFrame implements ActionListener{
     Species[] species = new Species[typesOfFish];
     int[] speciesCount = new int[typesOfFish];
     Image[] speciesImage = new Image[typesOfFish];
+    FishPanelButton[] fishButton;
     static int wx, wy, ww, wh;
     public boolean canTick = true;
     Clock clock;
-    Time simulate24HourClock = new Time(0,0,0);
+    Time simulate24HourClock = new Time(this, 0,0,0);
     
 
     public FishTank(){
@@ -80,9 +81,9 @@ public class FishTank extends JFrame implements ActionListener{
                 northInfoPanel.add(new JLabel("Click on a fish for more detailed information."));
                 northPanel.add(northInfoPanel, BorderLayout.SOUTH);
         JPanel mainPanel = new JPanel(new GridLayout(3,2));
-            FishPanelButton[] fishButton = new FishPanelButton[6];
+            fishButton = new FishPanelButton[typesOfFish];
             for(int i = 0; i<fishButton.length; i++){
-                fishButton[i] = new FishPanelButton(species[i], Time.getFalseTime());
+                fishButton[i] = new FishPanelButton(species[i], new Time(this, 0,0,0));
                 fishButton[i].addActionListener(this);
                 mainPanel.add(fishButton[i]);
                 //mainPanel.add(new JButton(String.valueOf(i)));
@@ -113,15 +114,28 @@ public class FishTank extends JFrame implements ActionListener{
     
     public void actionPerformed(ActionEvent e)
     {
-        
+        Object src = e.getSource();
+        for(int i=0; i<fishButton.length; i++){
+            if(src == fishButton[i])
+            {
+                InformationWindow infoWindow = new InformationWindow(species[i]);
+            }
+        }
     }
     
-    public void tick(){
-        clock.tick();
-        for(int i=0; i<species.length; i++){
-            for(int j = 0; j<species[i].inTank; j++)
-            {
-                species[i].getAllFish().get(species[i].inTank).tick();
+    public void simulateTime(){
+        int fakeSeconds = 0;
+        
+        
+        while(fakeSeconds< (60*60*24*7))
+        {
+            simulate24HourClock.tick();
+            clock.tick();
+            for(int i=0; i<species.length; i++){
+                for(int j = 0; j<species[i].inTank; j++)
+                {
+                    species[i].getAllFish().get(species[i].inTank).tick();
+                }
             }
         }
     }
@@ -131,7 +145,15 @@ public class FishTank extends JFrame implements ActionListener{
     }
     
     public Time getTime(){
-        return new Time(simulate24HourClock);
+        return new Time(this, simulate24HourClock);
+    }
+
+    public int getSpeciesCount() {
+        return species.length;
+    }
+    
+    public Species getSpecies(int index){
+        return species[index];
     }
     
     //INNER CLASS AboutWindow

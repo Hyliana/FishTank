@@ -6,6 +6,7 @@
 package fishtank.fish;
 
 import fishtank.classes.Time;
+import java.util.ArrayList;
 
 public class Fish{
     Species mySpecies;
@@ -14,6 +15,7 @@ public class Fish{
     int diceRoll;
     double consumption = 0;
     double mass, massFlux;
+    ArrayList<Double> consumptionMassOnDay = new ArrayList<>();
     Time lastFed;
 
     public Fish(Species mySpecies){
@@ -60,9 +62,21 @@ public class Fish{
         return lastFed.getTimestamp();
     }
     
-    public double pollConsumptionWeight()
+    public void commitDailyData(){
+        consumptionMassOnDay.add(consumption);
+        consumption=0;
+    }
+    
+    /**
+     * This method directly provides the answer to objective 1: How much does each
+     * @return 
+     */
+    public double pollDailyAverageConsumptionMass()
     {
-        
-        return 0.0;
+        double sum = 0;
+        for(int i = 0; i<consumptionMassOnDay.size(); i++){
+            sum += consumptionMassOnDay.get(i);
+        }
+        return (sum/consumptionMassOnDay.size());
     }
 }

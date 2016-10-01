@@ -36,7 +36,6 @@ public class Species {
      * @param speciesIndex FishTank will assign this number - serves as a global species identifier.
      * @param inTank The count of how many of that species of fish exist inside FishTank
      * @param metabolismIndex metabolismIndex is a rating from 1 to 100  describing the rate of digestion for this species.
-     * @param feedTimes 
      */
     public Species(FishTank tank, Clock clock, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex){
         this.tank = tank;
@@ -55,14 +54,16 @@ public class Species {
     }
     
     /**
-     * This method directly provides the answer to objective 2:
+     * This method directly provides the answer to objective 2: How many times a day does a fish species feed?
      * ~How many times per day are fishes fed on average? Group by species.~
      * @return returns a double representing how many times per day the fish in this species feed per day (average value)
      */
-    public double pollDailyAverage(){
-        //double average
-        //for(int
-        return 0.0;
+    public double pollDailyConsumptionNumberAverage(){
+        double sum = 0;
+        for(int i = 0; i<speciesWideAverageFeedForDay.size(); i++){
+            sum += speciesWideAverageFeedForDay.get(i);
+        }
+        return (sum/speciesWideAverageFeedForDay.size());
     }
     
     public double pollAverageMass(){
@@ -116,7 +117,7 @@ public class Species {
     public void commitDataForDay(){
         double sum = 0;
         for(int i = 0; i<speciesFish.size(); i++){
-            sum += speciesFish.get(i).pollConsumptionWeight();
+            sum += speciesFish.get(i).pollDailyAverageConsumptionMass();
         }
         speciesWideAverageFeedForDay.add((sum/speciesFish.size()));
     }
