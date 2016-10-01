@@ -6,6 +6,7 @@
 package fishtank.fish;
 
 import fishtank.FishTank;
+import fishtank.classes.Clock;
 import fishtank.classes.Time;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -20,12 +21,13 @@ public class Species {
     int metabolismIndex;
     ArrayList<Time> feedTimes = new ArrayList<>();
     ArrayList<Double> speciesWideAverageFeedForDay = new ArrayList<>();
-    ArrayList<Fish> speciesFish;
+    ArrayList<Fish> speciesFish = new ArrayList<>();
     /**
      * Species is an abstract class meant to provide a 
      * parent class for each of the six species of fish
      * so that the info can be easily read universally.
      * @param tank The FishTank in which this species (and thus its fish) exist.
+     * @param clock The universal "clock" for the program - keeps track of time passed.
      * @param image The image that will be displayed for the fish.
      * @param common The common name of the species of fish.
      * @param scientific The scientific name of the species of fish.
@@ -34,15 +36,19 @@ public class Species {
      * @param metabolismIndex metabolismIndex is a rating from 1 to 100  describing the rate of digestion for this species.
      * @param feedTimes 
      */
-    public Species(FishTank tank, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex){
+    public Species(FishTank tank, Clock clock, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex){
         this.tank = tank;
         myImage = image;
         commonName = common;
         scientificName = scientific;
         this.speciesIndex = speciesIndex;
         this.inTank = inTank;
-            speciesFish = new ArrayList();
+            for(int i=0; i<inTank; i++)
+            {
+                speciesFish.add(new Fish(this));
+            }
         this.metabolismIndex = metabolismIndex;
+        
     }
     
     /**

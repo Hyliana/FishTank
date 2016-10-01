@@ -25,7 +25,7 @@ public class FeedStock {
         
         if(stockRemaining[speciesIndex] <= 0)
         {
-            stockRemaining[speciesIndex] = 1500.00 - stockRemaining[speciesIndex];
+            stockRemaining[speciesIndex] = stockRemaining[speciesIndex] + 1500;
         }
     }
 }

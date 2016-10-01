@@ -5,6 +5,29 @@
  */
 package fishtank.classes;
 
+import fishtank.FishTank;
+
 public class Clock {
+    //long initialMS = System.currentTimeMillis();
+    long milliseconds = 0;
+    int seconds = 0;
+    FishTank controller;
     
+    public Clock(FishTank controller){
+       this.controller = controller; 
+    }
+    
+    public void tick(){
+        if(controller.canTick)
+        {
+            seconds++;
+            //I didn't program in a timer, since I figured you wouldn't wait for midnight to
+            //check to see if it updated continually. If you got this far into my code,
+            //awesome! Sorr there's not an implementation of swing.Timer, but I really
+            //didn't want to implement it for a proof of concept application.
+            //
+            //  Spencer
+        }
+        
+    }
 }
