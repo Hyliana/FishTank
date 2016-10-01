@@ -52,7 +52,7 @@ public class FishTank extends JFrame implements ActionListener{
         for(int i=0; i<typesOfFish; i++) //Load fish images into program, and determine how many fish will be present for each species. (RNG)
         {
             speciesImage[i] = Toolkit.getDefaultToolkit().getImage("../res/fish"+i+".png");
-            speciesCount[i] = (int)(Math.random()*6);
+            speciesCount[i] = (int)(1+Math.random()*8);
         }
         
         //I love the feeling of initalizing a new "species"... I'm more or less the God of this FishTank.java.
@@ -73,6 +73,7 @@ public class FishTank extends JFrame implements ActionListener{
             for(int i = 0; i<fishButton.length; i++){
                 fishButton[i] = new FishPanelButton(species[i], Time.getFalseTime());
                 mainPanel.add(fishButton[i]);
+                //mainPanel.add(new JButton(String.valueOf(i)));
             }
             
         JPanel rootPanel = new JPanel(new BorderLayout());
@@ -142,7 +143,7 @@ public class FishTank extends JFrame implements ActionListener{
                 southPanel.add(closeButton);
                 closeButton.addActionListener(this);
                 
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 
             
         }
