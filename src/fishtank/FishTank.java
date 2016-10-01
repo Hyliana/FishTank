@@ -24,7 +24,7 @@ public class FishTank extends JFrame implements ActionListener{
     FeedStock feed = new FeedStock();
     Species[] species = new Species[typesOfFish];
     int[] speciesCount = new int[typesOfFish];
-    Image[] speciesImage;
+    Image[] speciesImage = new Image[typesOfFish];
     static int wx, wy, ww, wh;
     public boolean canTick = true;
     Clock clock;
@@ -55,12 +55,19 @@ public class FishTank extends JFrame implements ActionListener{
             speciesCount[i] = (int)(Math.random()*6);
         }
         
-        //I love the feeling of initalizing a new species... I'm more or less the God of this FishTank.java.
+        //I love the feeling of initalizing a new "species"... I'm more or less the God of this FishTank.java.
         species[0] = new Species(this, clock, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram", 0, speciesCount[0], 16);
+        species[1] = new Species(this, clock, speciesImage[1], "Cheep Cheep", "Cheepus Purpuram", 1, speciesCount[1], 16);
+        species[2] = new Species(this, clock, speciesImage[2], "Cheep Cheep", "Cheepus Purpuram", 2, speciesCount[2], 16);
+        species[3] = new Species(this, clock, speciesImage[3], "Cheep Cheep", "Cheepus Purpuram", 3, speciesCount[3], 16);
+        species[4] = new Species(this, clock, speciesImage[4], "Cheep Cheep", "Cheepus Purpuram", 4, speciesCount[4], 16);
+        species[5] = new Species(this, clock, speciesImage[5], "Cheep Cheep", "Cheepus Purpuram", 5, speciesCount[5], 16);
         
         JPanel northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             JPanel northClockPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                northPanel.add(northClockPanel);
             JPanel northInfoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                northPanel.add(northInfoPanel);
         JPanel mainPanel = new JPanel(new GridLayout(3,2));
             FishPanelButton[] fishButton = new FishPanelButton[6];
             for(int i = 0; i<fishButton.length; i++){
@@ -73,7 +80,7 @@ public class FishTank extends JFrame implements ActionListener{
         rootPanel.add(northPanel, (BorderLayout.NORTH));
         rootPanel.add(mainPanel, BorderLayout.CENTER);
         
-        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public static void main(String[] args) {

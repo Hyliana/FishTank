@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class FishPanelButton extends JButton{
+public class FishPanelButton extends JPanel{
     Image myImage;
     Species species;
     String[] labels = {"Common Name: ", "Scientific Name: ", "In Tank: "};
@@ -40,6 +40,13 @@ public class FishPanelButton extends JButton{
             for(int i=0; i<infoLabels.length; i++){
                 eastPanel.add(infoLabels[i]);
             }
+            
+            JPanel rootPanel = new JPanel();
+            rootPanel.add(westPanel, (BorderLayout.WEST));
+            rootPanel.add(eastPanel, BorderLayout.EAST);
+            this.add(rootPanel);
+            invalidate();
+            validate();
         
     }
     
