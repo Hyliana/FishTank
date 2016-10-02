@@ -61,11 +61,17 @@ public class Species {
      * @return returns a double representing how many times per day the fish in this species feed per day (average value)
      */
     public double pollDailyConsumptionNumberAverage(){
-        double sum = 0;
-        for(int i = 0; i<speciesWideAverageFeedForDay.size(); i++){
-            sum += speciesWideAverageFeedForDay.get(i);
+        int timesFedTotal = 0;
+        int arrayLengthTotal = 0;
+        for(int fish = 0; fish<getCount(); fish++)
+        {
+            for(int day = 0; day<speciesFish.get(fish).getFeedArrayLength(); day++)
+            {
+                timesFedTotal += speciesFish.get(fish).getFeedCountArray().get(day);
+                arrayLengthTotal+=speciesFish.get(fish).getFeedArrayLength();
+            }
         }
-        return (sum/speciesWideAverageFeedForDay.size());
+            return timesFedTotal/arrayLengthTotal;
     }
     
     public double pollAverageMass(){
@@ -118,10 +124,10 @@ public class Species {
     
     public void commitDataForDay(){
         double sum = 0;
-        for(int i = 0; i<speciesFish.size(); i++){
+        for(int i = 0; i<getCount(); i++){
             sum += speciesFish.get(i).pollDailyAverageConsumptionMass();
         }
-        speciesWideAverageFeedForDay.add((sum/speciesFish.size()));
+        speciesWideAverageFeedForDay.add((sum/getCount())); // NOT THE PROBLEM
         //System.out.println("Committed "+sum+"g avg consumption to species"+speciesWideAverageFeedForDay.size()+" data");
     }
 }

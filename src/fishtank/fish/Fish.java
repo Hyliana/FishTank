@@ -16,6 +16,8 @@ public class Fish{
     int diceRoll;
     double consumption = 0;
     double mass, massFlux;
+    double timesFedToday = 0;
+    ArrayList<Double> timesFedOnDay = new ArrayList<>();
     ArrayList<Double> consumptionMassOnDay = new ArrayList<>();
     Time lastFed;
 
@@ -58,6 +60,7 @@ public class Fish{
                 burnt=0;
                 mySpecies.getTank().getFeedStock().feed(req, mySpecies.getSpeciesIndex());
                 consumption+=req;
+                timesFedToday++;
                 //System.out.println("a species["+mySpecies.getSpeciesIndex()+"] consumed "+req+"g just now!");
                 lastFed = mySpecies.getTank().getTime();
             }
@@ -70,11 +73,21 @@ public class Fish{
     
     public void commitDailyData(){
         consumptionMassOnDay.add(consumption);
+        timesFedOnDay.add(timesFedToday);
+        timesFedToday = 0;
         consumption=0;
     }
     
+    public ArrayList<Double> getFeedCountArray(){
+        return timesFedOnDay;
+    }
+    
+    public int getFeedArrayLength(){
+        return timesFedOnDay.size();
+    }
+    
     /**
-     * This method directly provides the answer to objective 1: How much does each
+     * This method directly provides the answer to objective 1: How much does each fish eat individually?
      * @return 
      */
     public double pollDailyAverageConsumptionMass()
@@ -84,6 +97,6 @@ public class Fish{
         {
             sum += consumptionMassOnDay.get(i);
         }
-        return (sum/consumptionMassOnDay.size());
+        return (sum/consumptionMassOnDay.size()); //THE PROBLEM
     }
 }
