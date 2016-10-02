@@ -21,6 +21,8 @@ public class Fish{
     public Fish(Species mySpecies){
         this.mySpecies = mySpecies;
         
+        lastFed = new Time(mySpecies.getTank(), 0,0,0);
+        
         massFlux = Math.random() * ((3)*(mySpecies.getMetabolismIndex()*(0.1)));
         diceRoll = (int)(Math.random()*(11));
         
