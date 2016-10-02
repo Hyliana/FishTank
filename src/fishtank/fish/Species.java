@@ -24,6 +24,7 @@ public class Species {
     ArrayList<Fish> speciesFish = new ArrayList<>();
     Clock clock;
     double burnRate;
+    int MASS_CONSTANT;
     /**
      * Species is an abstract class meant to provide a 
      * parent class for each of the six species of fish
@@ -37,7 +38,7 @@ public class Species {
      * @param inTank The count of how many of that species of fish exist inside FishTank
      * @param metabolismIndex metabolismIndex is a rating from 1 to 100  describing the rate of digestion for this species.
      */
-    public Species(FishTank tank, Clock clock, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex){
+    public Species(FishTank tank, Clock clock, Image image, String common, String scientific, int speciesIndex, int inTank, int metabolismIndex, int MASS_CONSTANT){
         this.tank = tank;
         this.clock = clock;
         myImage = image;
@@ -47,6 +48,7 @@ public class Species {
         this.inTank = inTank;
         this.metabolismIndex = metabolismIndex;
         this.burnRate=.125*metabolismIndex;
+        this.MASS_CONSTANT = MASS_CONSTANT;
             for(int i=0; i<getCount(); i++)
             {
                 speciesFish.add(new Fish(this));
@@ -68,8 +70,10 @@ public class Species {
             for(int day = 0; day<speciesFish.get(fish).getFeedArrayLength(); day++)
             {
                 timesFedTotal += speciesFish.get(fish).getFeedCountArray().get(day);
-                arrayLengthTotal+=speciesFish.get(fish).getFeedArrayLength();
+                System.out.println(speciesFish.get(fish).getFeedCountArray().get(day));
+                
             }
+            arrayLengthTotal+=speciesFish.get(fish).getFeedArrayLength();
         }
             return timesFedTotal/arrayLengthTotal;
     }
@@ -129,5 +133,9 @@ public class Species {
         }
         speciesWideAverageFeedForDay.add((sum/getCount())); // NOT THE PROBLEM
         //System.out.println("Committed "+sum+"g avg consumption to species"+speciesWideAverageFeedForDay.size()+" data");
+    }
+
+    double getMassConstant() {
+        return MASS_CONSTANT;
     }
 }

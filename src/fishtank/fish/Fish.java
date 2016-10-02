@@ -30,10 +30,10 @@ public class Fish{
         diceRoll = (int)(Math.random()*(11));
         
         if(diceRoll%2 == 0)
-            mass = 15*mySpecies.getBurnRate()-massFlux;
+            mass = mySpecies.getMassConstant()*mySpecies.getBurnRate()-massFlux;
             
         else
-           mass = 15*mySpecies.getBurnRate()+massFlux;
+           mass = mySpecies.getMassConstant()*mySpecies.getBurnRate()+massFlux;
     }
     
     public double getMass(){
@@ -47,10 +47,10 @@ public class Fish{
             curSec = getSec;
             
             burnt += (mySpecies.getBurnRate()/(60*60));
-            if(burnt >= mySpecies.getBurnRate())
+            if(burnt >= mySpecies.MASS_CONSTANT)
             {
                 diceRoll = (int)(Math.random()*(11));
-                double req = mass/105;
+                double req = mass/(mySpecies.MASS_CONSTANT);
                 
                 if(diceRoll%2 == 0)
                     req += massFlux/10;

@@ -66,12 +66,12 @@ public class FishTank extends JFrame implements ActionListener{
         }
         
         //I love the feeling of initalizing a new "species"... I'm more or less the God of this FishTank.java.
-        species[0] = new Species(this, clock, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram", 0, speciesCount[0], 62);
-        species[1] = new Species(this, clock, speciesImage[1], "Clown Fish", "Amphiprioninae", 1, speciesCount[1], 30);
-        species[2] = new Species(this, clock, speciesImage[2], "Palette Surgeonfish", "Paracanthurus Hepatus", 2, speciesCount[2], 40);
-        species[3] = new Species(this, clock, speciesImage[3], "Flounder", "Pseudopleuronectes Americanus", 3, speciesCount[3], 73);
-        species[4] = new Species(this, clock, speciesImage[4], "Magikarp", "Kyoto Koiking", 4, speciesCount[4], 24);
-        species[5] = new Species(this, clock, speciesImage[5], "Fishbone", "Cheepus Mortis", 5, speciesCount[5], 1);
+        species[0] = new Species(this, clock, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram", 0, speciesCount[0], 62, 100);
+        species[1] = new Species(this, clock, speciesImage[1], "Clown Fish", "Amphiprioninae", 1, speciesCount[1], 30, 30);
+        species[2] = new Species(this, clock, speciesImage[2], "Palette Surgeonfish", "Paracanthurus Hepatus", 2, speciesCount[2], 40, 30);
+        species[3] = new Species(this, clock, speciesImage[3], "Flounder", "Pseudopleuronectes Americanus", 3, speciesCount[3], 73, 20);
+        species[4] = new Species(this, clock, speciesImage[4], "Magikarp", "Kyoto Koiking", 4, speciesCount[4], 24, 15);
+        species[5] = new Species(this, clock, speciesImage[5], "Fishbone", "Cheepus Mortis", 5, speciesCount[5], 5, 50);
         
         simulateTime();
         
