@@ -23,13 +23,13 @@ public class Fish{
         
         lastFed = new Time(mySpecies.getTank(), 0,0,0);
         
-        massFlux = Math.random() * ((3)*(mySpecies.getMetabolismIndex()*(0.1)));
-        diceRoll = (int)(Math.random()*(11));
+        massFlux = 0;//Math.random() * ((3)*(mySpecies.getMetabolismIndex()*(0.1)));
+        //diceRoll = (int)(Math.random()*(11));
         
-        if(diceRoll%2 == 0)
+        //if(diceRoll%2 == 0)
             mass = 15*mySpecies.getBurnRate()-massFlux;
-        else
-            mass = 15*mySpecies.getBurnRate()+massFlux;
+        //else
+        //    mass = 15*mySpecies.getBurnRate()+massFlux;
     }
     
     public double pollMass(){
@@ -45,7 +45,7 @@ public class Fish{
             if(burnt >= mySpecies.getBurnRate())
             {
                 diceRoll = (int)(Math.random()*(11));
-                double req = (1/105)*mass;
+                double req = (1/105);//*mass;
                 
                 if(diceRoll%2 == 0)
                     req += massFlux;

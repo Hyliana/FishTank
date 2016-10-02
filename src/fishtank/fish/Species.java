@@ -45,7 +45,7 @@ public class Species {
         scientificName = scientific;
         this.speciesIndex = speciesIndex;
         this.inTank = inTank;
-            for(int i=0; i<inTank; i++)
+            for(int i=0; i<getCount(); i++)
             {
                 speciesFish.add(new Fish(this));
             }
@@ -61,15 +61,15 @@ public class Species {
     public double pollDailyConsumptionNumberAverage(){
         double sum = 0;
         for(int i = 0; i<speciesWideAverageFeedForDay.size(); i++){
-            sum += speciesWideAverageFeedForDay.get(i);
+            sum += i;
         }
         return (sum/speciesWideAverageFeedForDay.size());
     }
     
     public double pollAverageMass(){
-          double sum = 0;
-        for(int i = 0; i<speciesFish.size(); i++){
-            sum += speciesFish.get(i).pollMass();
+        double sum = 0;
+        for(int i = 0; i<getAllFish().size(); i++){
+            sum += getAllFish().get(i).pollMass();
         }
         return (sum/speciesFish.size());
     }
@@ -120,5 +120,6 @@ public class Species {
             sum += speciesFish.get(i).pollDailyAverageConsumptionMass();
         }
         speciesWideAverageFeedForDay.add((sum/speciesFish.size()));
+        System.out.println("Committed "+sum+"g avg consumption to species"+speciesWideAverageFeedForDay.size()+" data");
     }
 }

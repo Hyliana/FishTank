@@ -25,6 +25,9 @@ public class Clock {
         if(controller.canTick)
         {
             seconds++;
+            if(seconds%(60*60)==0){
+                System.out.println("Hour passed...");
+            }
             //I didn't program in a timer, since I figured you wouldn't wait for midnight to
             //check to see if it updated continually. If you got this far into my code,
             //awesome! Sorr there's not an implementation of swing.Timer, but I really

@@ -66,12 +66,14 @@ public class FishTank extends JFrame implements ActionListener{
         }
         
         //I love the feeling of initalizing a new "species"... I'm more or less the God of this FishTank.java.
-        species[0] = new Species(this, clock, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram", 0, speciesCount[0], 16);
-        species[1] = new Species(this, clock, speciesImage[1], "Clown Fish", "Amphiprioninae", 1, speciesCount[1], 16);
-        species[2] = new Species(this, clock, speciesImage[2], "Palette Surgeonfish", "Paracanthurus Hepatus", 2, speciesCount[2], 16);
-        species[3] = new Species(this, clock, speciesImage[3], "Flounder", "Pseudopleuronectes Americanus", 3, speciesCount[3], 16);
-        species[4] = new Species(this, clock, speciesImage[4], "Magikarp", "Kyoto Koiking", 4, speciesCount[4], 16);
-        species[5] = new Species(this, clock, speciesImage[5], "Fishbone", "Cheepus Mortis", 5, speciesCount[5], 16);
+        species[0] = new Species(this, clock, speciesImage[0], "Cheep Cheep", "Cheepus Purpuram", 0, speciesCount[0], 62);
+        species[1] = new Species(this, clock, speciesImage[1], "Clown Fish", "Amphiprioninae", 1, speciesCount[1], 30);
+        species[2] = new Species(this, clock, speciesImage[2], "Palette Surgeonfish", "Paracanthurus Hepatus", 2, speciesCount[2], 40);
+        species[3] = new Species(this, clock, speciesImage[3], "Flounder", "Pseudopleuronectes Americanus", 3, speciesCount[3], 73);
+        species[4] = new Species(this, clock, speciesImage[4], "Magikarp", "Kyoto Koiking", 4, speciesCount[4], 24);
+        species[5] = new Species(this, clock, speciesImage[5], "Fishbone", "Cheepus Mortis", 5, speciesCount[5], 1);
+        
+        simulateTime();
         
         JPanel northPanel = new JPanel(new BorderLayout());
             JPanel northClockPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -125,18 +127,18 @@ public class FishTank extends JFrame implements ActionListener{
     
     public void simulateTime(){
         int fakeSeconds = 0;
-        
-        
+
         while(fakeSeconds< (60*60*24*7))
         {
             simulate24HourClock.tick();
             clock.tick();
             for(int i=0; i<species.length; i++){
-                for(int j = 0; j<species[i].inTank; j++)
+                for(int j = 0; j<species[i].getAllFish().size(); j++)
                 {
-                    species[i].getAllFish().get(species[i].inTank).tick();
+                    species[i].getAllFish().get(j).tick();
                 }
             }
+            fakeSeconds++;
         }
     }
     

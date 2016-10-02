@@ -28,12 +28,14 @@ public class InformationWindow extends JFrame{
             JPanel myRootPanel = new JPanel();
                 myRootPanel.setLayout(new BorderLayout());
                 JPanel imagePanel = new JPanel(){
-                    public void paint(Graphics g){
-                        super.paint(g);
-                        g.drawImage(species.getImage(), 0, 0, this.getWidth(), this.getHeight()*(5/8), this);
+                    public void paintComponent(Graphics g){
+                        //super.paint(g);
+                        g.drawImage(species.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight()*(5/8), this);
                     }
                 };
-                
+                imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+                imagePanel.add(new JLabel("Fish "+index));
+                imagePanel.setBounds(imagePanel.getX(), imagePanel.getY(), imagePanel.getWidth(), imagePanel.getWidth());
                 myRootPanel.add(imagePanel, (BorderLayout.NORTH));
                 
                 JPanel timePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -100,7 +102,7 @@ public class InformationWindow extends JFrame{
             
             
         Dimension res = Toolkit.getDefaultToolkit().getScreenSize();
-        int ww = 800;
+        int ww = 644;
         int wh = 600/2;
         int wx = (int)(res.getWidth()/2 - ww/2);
         int wy = (int)(res.getHeight()/2 - wh/2);
