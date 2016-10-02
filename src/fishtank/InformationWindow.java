@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,7 +48,7 @@ public class InformationWindow extends JFrame{
                     massPanel.setBorder(myBorder);
                     myRootPanel.add(massPanel);
                 JPanel fedPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    fedPanel.add(new JLabel(species.getAllFish().get(index).pollDailyAverageConsumptionMass()+"g/day"));
+                    fedPanel.add(new JLabel(new DecimalFormat("###.##").format(species.getAllFish().get(index).pollDailyAverageConsumptionMass())+"g/day"));
                     fedPanel.setBorder(myBorder);
                     myRootPanel.add(fedPanel);
                     
@@ -84,7 +85,7 @@ public class InformationWindow extends JFrame{
             eastPanel.add(new JLabel("Burns "+species.getBurnRate()+"g/hour"));
             eastPanel.add(new JLabel("Metabolism Index: "+species.getMetabolismIndex()));
             eastPanel.add(new JLabel("This species feeds "+species.pollDailyConsumptionNumberAverage()+" times per day, on average."));
-            eastPanel.add(new JLabel("Average Mass: "+species.pollAverageMass()));
+            eastPanel.add(new JLabel("Average Mass: "+new DecimalFormat("###.##").format(species.pollAverageMass())+"g"));
             eastPanel.add(new JLabel());
             eastPanel.setBorder(myBorder);
             rootPanel.add(eastPanel);

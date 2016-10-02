@@ -128,7 +128,7 @@ public class FishTank extends JFrame implements ActionListener{
     public void simulateTime(){
         int fakeSeconds = 0;
 
-        while(fakeSeconds< (60*60*24*7))
+        while(fakeSeconds <= (60*60*24*7))
         {
             simulate24HourClock.tick();
             clock.tick();

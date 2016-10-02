@@ -45,12 +45,14 @@ public class Species {
         scientificName = scientific;
         this.speciesIndex = speciesIndex;
         this.inTank = inTank;
+        this.metabolismIndex = metabolismIndex;
+        this.burnRate=.125*metabolismIndex;
             for(int i=0; i<getCount(); i++)
             {
                 speciesFish.add(new Fish(this));
+                System.out.println(i+", sp"+speciesIndex);
             }
-        this.metabolismIndex = metabolismIndex;
-        this.burnRate=.125*metabolismIndex;
+        
     }
     
     /**
@@ -61,7 +63,7 @@ public class Species {
     public double pollDailyConsumptionNumberAverage(){
         double sum = 0;
         for(int i = 0; i<speciesWideAverageFeedForDay.size(); i++){
-            sum += i;
+            sum += speciesWideAverageFeedForDay.get(i);
         }
         return (sum/speciesWideAverageFeedForDay.size());
     }

@@ -6,12 +6,13 @@
 package fishtank.fish;
 
 import fishtank.classes.Time;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Fish{
     Species mySpecies;
     int curSec = -1;
-    int burnt = 0;
+    double burnt = 0;
     int diceRoll;
     double consumption = 0;
     double mass, massFlux;
@@ -23,13 +24,14 @@ public class Fish{
         
         lastFed = new Time(mySpecies.getTank(), 0,0,0);
         
-        massFlux = 0;//Math.random() * ((3)*(mySpecies.getMetabolismIndex()*(0.1)));
-        //diceRoll = (int)(Math.random()*(11));
+        massFlux = Math.random() * ((3)*(mySpecies.getMetabolismIndex()*(0.1)));
+        diceRoll = (int)(Math.random()*(11));
         
-        //if(diceRoll%2 == 0)
+        if(diceRoll%2 == 0)
             mass = 15*mySpecies.getBurnRate()-massFlux;
-        //else
-        //    mass = 15*mySpecies.getBurnRate()+massFlux;
+            
+        else
+           mass = 15*mySpecies.getBurnRate()+massFlux;
     }
     
     public double pollMass(){
@@ -41,20 +43,22 @@ public class Fish{
         if(curSec < getSec)
         {
             curSec = getSec;
-            burnt+=mySpecies.getBurnRate()/(60*60);
+            
+            burnt += (mySpecies.getBurnRate()/(60*60));
             if(burnt >= mySpecies.getBurnRate())
             {
                 diceRoll = (int)(Math.random()*(11));
-                double req = (1/105);//*mass;
+                double req = (1/105)*mass;
                 
                 if(diceRoll%2 == 0)
-                    req += massFlux;
+                    req += massFlux*(1/105);
                 else
-                    req -= massFlux;
+                    req -= massFlux*(1/105);
 
                 burnt=0;
                 mySpecies.getTank().getFeedStock().feed(req, mySpecies.getSpeciesIndex());
                 consumption+=req;
+                System.out.println("a species["+mySpecies.getSpeciesIndex()+"] consumed "+req+"g just now!");
                 lastFed = mySpecies.getTank().getTime();
             }
         }
@@ -76,7 +80,8 @@ public class Fish{
     public double pollDailyAverageConsumptionMass()
     {
         double sum = 0;
-        for(int i = 0; i<consumptionMassOnDay.size(); i++){
+        for(int i = 0; i<consumptionMassOnDay.size(); i++)
+        {
             sum += consumptionMassOnDay.get(i);
         }
         return (sum/consumptionMassOnDay.size());
