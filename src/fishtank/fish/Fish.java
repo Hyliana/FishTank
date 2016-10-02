@@ -34,7 +34,7 @@ public class Fish{
            mass = 15*mySpecies.getBurnRate()+massFlux;
     }
     
-    public double pollMass(){
+    public double getMass(){
         return mass;
     }
     
@@ -48,17 +48,17 @@ public class Fish{
             if(burnt >= mySpecies.getBurnRate())
             {
                 diceRoll = (int)(Math.random()*(11));
-                double req = (1/105)*mass;
+                double req = mass/105;
                 
                 if(diceRoll%2 == 0)
-                    req += massFlux*(1/105);
+                    req += massFlux/10;
                 else
-                    req -= massFlux*(1/105);
+                    req -= massFlux/10;
 
                 burnt=0;
                 mySpecies.getTank().getFeedStock().feed(req, mySpecies.getSpeciesIndex());
                 consumption+=req;
-                System.out.println("a species["+mySpecies.getSpeciesIndex()+"] consumed "+req+"g just now!");
+                //System.out.println("a species["+mySpecies.getSpeciesIndex()+"] consumed "+req+"g just now!");
                 lastFed = mySpecies.getTank().getTime();
             }
         }

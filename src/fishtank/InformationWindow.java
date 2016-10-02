@@ -27,24 +27,13 @@ public class InformationWindow extends JFrame{
     private class IndividualFishPanel extends JPanel{
         public IndividualFishPanel(Species species, int index){
             JPanel myRootPanel = new JPanel();
-                myRootPanel.setLayout(new BorderLayout());
-                JPanel imagePanel = new JPanel(){
-                    public void paintComponent(Graphics g){
-                        //super.paint(g);
-                        g.drawImage(species.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight()*(5/8), this);
-                    }
-                };
-                imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-                imagePanel.add(new JLabel("Fish "+index));
-                imagePanel.setBounds(imagePanel.getX(), imagePanel.getY(), imagePanel.getWidth(), imagePanel.getWidth());
-                myRootPanel.add(imagePanel, (BorderLayout.NORTH));
+                myRootPanel.setLayout(new GridLayout(3,1));
                 
-                JPanel timePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    timePanel.add(new JLabel(species.getAllFish().get(index).getReadableTimeLastFed()));
-                    timePanel.setBorder(myBorder);
-                    myRootPanel.add(timePanel);
+                JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                    imagePanel.add(new JLabel("Fish "+index));
+                    myRootPanel.add(imagePanel, (BorderLayout.NORTH));
                 JPanel massPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                    massPanel.add(new JLabel(species.getAllFish().get(index).pollMass()+"g"));
+                    massPanel.add(new JLabel(new DecimalFormat("###.##").format(species.getAllFish().get(index).getMass())+"g"));
                     massPanel.setBorder(myBorder);
                     myRootPanel.add(massPanel);
                 JPanel fedPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -103,8 +92,8 @@ public class InformationWindow extends JFrame{
             
             
         Dimension res = Toolkit.getDefaultToolkit().getScreenSize();
-        int ww = 644;
-        int wh = 600/2;
+        int ww = 700;
+        int wh = 280;
         int wx = (int)(res.getWidth()/2 - ww/2);
         int wy = (int)(res.getHeight()/2 - wh/2);
         setBounds(wx, wy, ww, wh);

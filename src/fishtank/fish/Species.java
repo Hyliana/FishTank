@@ -71,7 +71,7 @@ public class Species {
     public double pollAverageMass(){
         double sum = 0;
         for(int i = 0; i<getAllFish().size(); i++){
-            sum += getAllFish().get(i).pollMass();
+            sum += getAllFish().get(i).getMass();
         }
         return (sum/speciesFish.size());
     }
@@ -122,6 +122,6 @@ public class Species {
             sum += speciesFish.get(i).pollDailyAverageConsumptionMass();
         }
         speciesWideAverageFeedForDay.add((sum/speciesFish.size()));
-        System.out.println("Committed "+sum+"g avg consumption to species"+speciesWideAverageFeedForDay.size()+" data");
+        //System.out.println("Committed "+sum+"g avg consumption to species"+speciesWideAverageFeedForDay.size()+" data");
     }
 }
